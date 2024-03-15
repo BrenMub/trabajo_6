@@ -3,18 +3,18 @@ from fastapi.responses import JSONResponse
 import pandas as pd
 import joblib
 
-
 app = FastAPI(
-    title="Deploy apple quality model",
+    title="Deploy breast cancer model",
     version="0.0.1"
 )
 
-# ----------------------------------------------------------------
-# LOAD THE IA MODEL
-# ----------------------------------------------------------------
-# model = joblib.load('model/logistic_regression_apple_model.pkl')
+# ------------------------------------------------------------
+# LOAD THE AI MODEL
+# ------------------------------------------------------------
+# model = joblib.load("model/logistic_regression_model_v01.pkl")
 
-@app.post("/api/v1/predict-apple-quality", tags=["apple-quality"])
+
+@app.post("/api/v1/predict-breast-cancer", tags=["breast-cancer"])
 async def predict(
     Size: float,
     Weight: float,
@@ -33,7 +33,6 @@ async def predict(
         'Juiciness': Juiciness,
         'Ripeness': Ripeness,
         'Acidity': Acidity
-
     }
 
     try:
@@ -48,8 +47,3 @@ async def predict(
             detail=str(e),
             status_code=status.HTTP_400_BAD_REQUEST
         )
-
-
-
-
-
